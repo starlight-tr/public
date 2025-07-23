@@ -146,17 +146,6 @@
       const sonuc = document.getElementById("sonuc");
       const resetButton = document.getElementById("resetButton");
 
-      function round(val) {
-        const tamKisim = Math.floor(val);
-        const kusurat = val - tamKisim;
-
-        if (kusurat >= 0.5) {
-          return tamKisim + 0.5;
-        } else {
-          return tamKisim;
-        }
-      }
-
       function hesapla() {
         const brut = parseFloat(brutKilo.value) || 0;
         const palet = parseFloat(paletDara.value) || 0;
@@ -164,9 +153,9 @@
         const adet = parseInt(kasaAdedi.value) || 0;
         const fiyat = parseFloat(birimFiyat.value) || 0;
 
-        const toplamDara = round(palet + kasa * adet);
-        const netKilo = Math.max(0, round(brut - toplamDara));
-        const toplamTutar = round(netKilo * fiyat);
+        const toplamDara = palet + kasa * adet;
+        const netKilo = Math.max(0, brut - toplamDara);
+        const toplamTutar = netKilo * fiyat;
 
         sonuc.innerHTML = `
         <div class="info-top">
@@ -177,27 +166,27 @@
 
           <div class="info-box">
             <span class="label">BRÜT</span>
-            <span class="value">${+brut.toFixed(2)} kg</span>
+            <span class="value">${+brut.toFixed(1)} kg</span>
           </div>
 
           <div class="info-box">
             <span class="label">DARA</span>
-            <span class="value">${+toplamDara.toFixed(2)} kg</span>
+            <span class="value">${+toplamDara.toFixed(1)} kg</span>
           </div>
 
           <div class="info-box">
             <span class="label">NET</span>
-            <span class="value">${+netKilo.toFixed(2)} kg</span>
+            <span class="value">${+netKilo.toFixed(1)} kg</span>
           </div>
 
             <div class="info-box">
             <span class="label">FİYAT</span>
-            <span class="value">${+fiyat.toFixed(2)}</span>
+            <span class="value">${+fiyat.toFixed(1)}</span>
           </div>
 
             <div class="info-box">
             <span class="label">TOPLAM</span>
-            <span class="value">${+toplamTutar.toFixed(2)}</span>
+            <span class="value">${+toplamTutar.toFixed(1)}</span>
           </div>
       `;
       }
